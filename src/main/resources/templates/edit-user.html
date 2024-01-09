@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Edit User</title>
+  <style>
+    /* CSS styling code... */
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+<h1>Edit User</h1>
+
+<form method="post" th:action="@{/users/edit/{id}(id=${user.id})}" th:object="${user}">
+  <label for="username">Username:</label>
+  <input type="text" id="username" th:field="*{username}" required/>
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" th:field="*{password}" required/>
+
+  <label for="firstname">First Name:</label>
+  <input type="text" id="firstname" th:field="*{firstname}" required/>
+
+  <label for="lastname">Last Name:</label>
+  <input type="text" id="lastname" th:field="*{lastname}" required/>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" th:field="*{email}" required/>
+
+
+  <button type="submit">Update</button>
+</form>
+</body>
+</html>

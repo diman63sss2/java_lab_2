@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Book</title>
+    <style>
+        /* CSS styling code... */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+<h1>Edit Book</h1>
+
+<form method="post" th:action="@{/books/edit/{bookId}(bookId=${book.id})}" th:object="${book}">
+    <label for="content">Content:</label>
+    <input type="text" id="content" th:field="*{content}" required/>
+
+    <label for="user">User Id:</label>
+    <input type="text" id="user" th:field="*{user}" required/>
+
+
+
+    <button type="submit">Update</button>
+</form>
+</body>
+</html>

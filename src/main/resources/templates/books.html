@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+<h1>Book List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>UUID</th>
+        <th>Content</th>
+        <th>Is Deleted</th>
+        <th>Creation Date</th>
+        <th>Last Modified Date</th>
+        <th>Author Name</th>
+        <th>Edit</th> <!-- Add a new column for the Edit link -->
+        <th>Delete</th> <!-- Add a new column for the Delete link -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book, status : ${books}">
+        <td th:text="${book.id}"></td>
+        <td th:text="${book.uuid}"></td>
+        <td th:text="${book.content}"></td>
+        <td th:text="${book.isDeleted}"></td>
+        <td th:text="${book.creationDate}"></td>
+        <td th:text="${book.lastModifiedDate}"></td>
+        <td th:text="${book.user.username}" </td>
+        <td>
+            <a th:href="@{'/books/edit/' + ${book.id}}">Edit</a> <!-- Add the Edit link with the user's ID  -->
+        </td>
+        <td>
+            <!-- Add a delete form with a button to each row -->
+            <form th:action="@{'/books/delete/' + ${book.id}}" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p><a href="#" th:href="@{/books/create/{userId}(userId = ${admin.id})}">Create Book</a></p>
+</body>
+</html>
